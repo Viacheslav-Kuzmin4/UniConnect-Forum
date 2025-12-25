@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Messages</h2>
+<ul>
+    {% for message in messages %}
+        <li>{{ message['timestamp'] }} | <b>{{ message['sender'] }}</b>: {{ message['content'] }}</li>
+    {% endfor %}
+</ul>
+<form method="POST" action="{{ url_for('view_chat', chat_id=chat_id) }}">
+    <input type="text" name="content" placeholder="Your message" required>
+    <button type="submit">Send</button>
+</form>
+<a href="{{ url_for('chats_page') }}">Back to chats</a>
+{% endblock %}
